@@ -44,10 +44,26 @@ def interpolate_1d(x, y):
         sleep(5)
 
 
+def make_numpy_array(array):
+    data = []
+    for row in array:
+        data.append(np.array(row))
+    return data
+
+
+def tree_and_query(data):
+    tree = KDTree(data)
+    nearest_dist, nearest_ind = tree.query(data, k=2)
+    print(nearest_dist[:, 1])
+    print(nearest_ind[:, 1])
+
+
 def main():
     data = read_data_from_file()
-    print('\n')
-    y = get_function_from_row(data)
+    data = make_numpy_array(data)
+    pprint(data)
+    tree_and_query(data)
+    # y = get_function_from_row(data)
 
 
 if __name__ == '__main__':
