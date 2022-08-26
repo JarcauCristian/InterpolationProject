@@ -1,10 +1,10 @@
 import csv
 from pprint import pprint
 from time import sleep
-
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.interpolate import interp1d
+from sklearn.neighbors import KDTree
 
 
 def read_data_from_file():
@@ -26,7 +26,7 @@ def read_data_from_file():
     return data
 
 
-def get_root_mean_square(data):
+def get_function_from_row(data):
     y = []
     for row in data:
         y.append(list(-np.array(row)/3.0))
@@ -47,8 +47,7 @@ def interpolate_1d(x, y):
 def main():
     data = read_data_from_file()
     print('\n')
-    y = get_root_mean_square(data)
-    interpolate_1d(data, y)
+    y = get_function_from_row(data)
 
 
 if __name__ == '__main__':
