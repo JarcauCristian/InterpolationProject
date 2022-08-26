@@ -51,7 +51,7 @@ def make_numpy_array(array):
     return data
 
 
-def tree_and_query(data):
+def get_closest(data):
     tree = KDTree(data)
     nearest_dist, nearest_ind = tree.query(data, k=2)
     print(nearest_dist[:, 1])
@@ -62,7 +62,7 @@ def main():
     data = read_data_from_file()
     data = make_numpy_array(data)
     pprint(data)
-    tree_and_query(data)
+    get_closest(data)
     # y = get_function_from_row(data)
 
 
